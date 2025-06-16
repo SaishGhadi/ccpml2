@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,60 +9,160 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="min-h-screen bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 flex items-center justify-center">
-            <div class="w-full max-w-md p-8 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg">
-                <h2 class="text-3xl font-bold text-center text-[#0C8A6F] dark:text-[#0C8A6F]">Register</h2>
-                
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    
-                    <!-- Name -->
-                    <div>
-                        <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+    <body class="bg-gradient-to-br from-gray-50 to-gray-100 antialiased">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center px-4 py-6 sm:px-6 lg:px-8">
+            <!-- Logo Section -->
+            <div class="mb-8 text-center">
+                <a href="/" class="inline-block">
+                    <div class="flex items-center justify-center space-x-3">
+                        <!-- <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </div> -->
+                        <div class="text-2xl sm:text-3xl font-bold text-gray-900">
+                            <span class="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
+                                CCPP
+                            </span>
+                        </div>
                     </div>
-                    
-                    <!-- Email Address -->
-                    <div class="mt-4">
-                        <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
-                    
-                    <!-- Password -->
-                    <div class="mt-4">
-                        <x-input-label for="password" :value="__('Password')" />
-                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
-                    
-                    <!-- Confirm Password -->
-                    <div class="mt-4">
-                        <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-                        <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    </div>
-                    
-                    <div class="flex items-center justify-between mt-4">
-                        <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
-                        </a>
-                    </div>
-                    
-                    <div class="mt-6 flex justify-center">
-                        <x-primary-button class="w-small bg-[#0C8A6F] px-4 py-2 text-white text-sm font-semibold rounded-md shadow-md hover:bg-[#0C8A6F]/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0C8A6F]">
-                            {{ __('Register') }}
-                        </x-primary-button>
-                    </div>
-                </form>
+                </a>
+                <p class="mt-2 text-sm text-gray-600">Carbon Credit Price Prediction</p>
             </div>
+
+            <!-- Register Card -->
+            <div class="w-full max-w-md">
+                <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                    <!-- Card Header -->
+                    <div class="bg-gradient-to-r from-green-600 to-green-700 px-6 py-6 sm:px-8">
+                        <h2 class="text-2xl font-bold text-center text-white">
+                            Create Account
+                        </h2>
+                        <p class="text-green-100 text-center mt-1 text-sm">
+                            Join us to start predicting carbon prices
+                        </p>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="px-6 py-8 sm:px-8">
+                        <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                            @csrf
+                            
+                            <!-- Name -->
+                            <div>
+                                <x-input-label for="name" :value="__('Name')" class="block text-sm font-medium text-gray-700 mb-2" />
+                                <x-text-input id="name" 
+                                    class="block w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" 
+                                    type="text" 
+                                    name="name" 
+                                    :value="old('name')" 
+                                    required 
+                                    autofocus 
+                                    autocomplete="name"
+                                    placeholder="Enter your full name" />
+                                <x-input-error :messages="$errors->get('name')" class="mt-2 text-sm text-red-600" />
+                            </div>
+                            
+                            <!-- Email Address -->
+                            <div>
+                                <x-input-label for="email" :value="__('Email')" class="block text-sm font-medium text-gray-700 mb-2" />
+                                <x-text-input id="email" 
+                                    class="block w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" 
+                                    type="email" 
+                                    name="email" 
+                                    :value="old('email')" 
+                                    required 
+                                    autocomplete="username"
+                                    placeholder="Enter your email address" />
+                                <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-600" />
+                            </div>
+                            
+                            <!-- Password -->
+                            <div>
+                                <x-input-label for="password" :value="__('Password')" class="block text-sm font-medium text-gray-700 mb-2" />
+                                <x-text-input id="password" 
+                                    class="block w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-white-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" 
+                                    type="password" 
+                                    name="password" 
+                                    required 
+                                    autocomplete="new-password"
+                                    placeholder="Create a secure password" />
+                                <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm text-red-600" />
+                            </div>
+                            
+                            <!-- Confirm Password -->
+                            <div>
+                                <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="block text-sm font-medium text-gray-700 mb-2" />
+                                <x-text-input id="password_confirmation" 
+                                    class="block w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" 
+                                    type="password" 
+                                    name="password_confirmation" 
+                                    required 
+                                    autocomplete="new-password"
+                                    placeholder="Confirm your password" />
+                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-sm text-red-600" />
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div>
+                                <button type="submit" 
+                                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-200">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    </svg>
+                                    {{ __('Create Account') }}
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Terms & Privacy -->
+                        <div class="mt-6">
+                            <p class="text-xs text-gray-600 text-center leading-relaxed">
+                                By creating an account, you agree to our 
+                                <a href="#" class="text-green-600 hover:text-green-700 font-medium">Terms of Service</a> 
+                                and 
+                                <a href="#" class="text-green-600 hover:text-green-700 font-medium">Privacy Policy</a>
+                            </p>
+                        </div>
+
+                        <!-- Login Link -->
+                        <div class="mt-6 text-center">
+                            <span class="text-sm text-gray-600">Already have an account? </span>
+                            <a href="{{ route('login') }}" 
+                               class="text-sm text-green-600 hover:text-green-700 font-medium transition-colors duration-200">
+                                {{ __('Sign in') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Back to Home -->
+                <div class="mt-6 text-center">
+                    <a href="/" class="inline-flex items-center text-sm text-gray-600 hover:text-green-600 transition-colors duration-200">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-green-100 rounded-full opacity-20 blur-xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-green-200 rounded-full opacity-20 blur-xl"></div>
         </div>
     </body>
 </html>

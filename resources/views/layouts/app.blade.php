@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
     <head>
-        <title>CCPPM</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,34 +9,56 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
     </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="min-h-screen bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+    <body class="bg-gray-50 antialiased">
+        <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
             @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-[#0C8A6F] dark:text-[#0C8A6F] font-bold text-3xl text-center">
-                        {{ $header }}
+                <header class="bg-white shadow-sm border-b border-gray-100">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 text-center">
+                            <span class="bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">
+                                {{ $header }}
+                            </span>
+                        </h1>
                     </div>
                 </header>
             @endisset
 
             <!-- Page Content -->
-            <main class="py-12 flex justify-center min-h-screen">
-                <div class="w-full max-w-7xl px-6">
-                    <div class="bg-white dark:bg-zinc-800 overflow-hidden shadow-lg rounded-2xl p-6">
-                        <div class="text-center text-gray-900 dark:text-white text-xl font-semibold">
-                            {{ $slot }}
+            <main class="flex-1">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                        <!-- Content Card -->
+                        <div class="p-6 sm:p-8 lg:p-10">
+                            <div class="text-gray-900">
+                                {{ $slot }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </main>
+
+            <!-- Footer (optional) -->
+            <footer class="bg-white border-t border-gray-100 mt-auto">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div class="text-center text-sm text-gray-500">
+                        <p>&copy; {{ date('Y') }} CCPP. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
         </div>
     </body>
 </html>

@@ -4,11 +4,21 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\PredictController;
+use App\Http\Controllers\ChartController;
+
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/more-info', function () {
+//     return view('moreInfo');
+// })->middleware(['auth', 'verified'])->name('moreInfo');
+
+Route::get('/more-info', [ChartController::class, 'showMoreInfo'])->name('moreInfo');
+// Route::post('/predict', [ChartController::class, 'predict'])->name('predict');
+
 
 // Route::get('/admin', function () {
 //     return view('adminPnl');
@@ -27,6 +37,8 @@ Route::post('/store-features', [AdminAuthController::class, 'storeFeatures'])->m
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
