@@ -31,6 +31,9 @@ Route::prefix('admin')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
 
+Route::get('/admin/register', [AdminAuthController::class, 'showRegisterForm'])->name('admin.register.form');
+Route::post('/admin/register', [AdminAuthController::class, 'register'])->name('admin.register');
+
 Route::post('/store-features', [AdminAuthController::class, 'storeFeatures'])->middleware('auth:admin')->name('admin.storeFeatures');
 
 

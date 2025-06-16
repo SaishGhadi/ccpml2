@@ -58,10 +58,14 @@
             <!-- Average Price Card -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div class="flex items-center justify-between">
-                    <div>
+                    <div class="flex-1">
                         <p class="text-sm font-medium text-gray-600">Average Price</p>
-                        <p class="text-2xl font-bold text-gray-900">$45.32</p>
-                        <p class="text-xs text-green-600 mt-1">+2.4% from last month</p>
+                        <p class="text-2xl font-bold text-gray-900" id="averagePrice">
+                            <span class="inline-block w-16 h-6 bg-gray-200 animate-pulse rounded"></span>
+                        </p>
+                        <p class="text-xs mt-1" id="averagePriceChange">
+                            <span class="inline-block w-20 h-4 bg-gray-200 animate-pulse rounded"></span>
+                        </p>
                     </div>
                     <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                         <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,37 +75,80 @@
                 </div>
             </div>
 
-            <!-- Volume Card -->
+            <!-- Current Price Card -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">Trading Volume</p>
-                        <p class="text-2xl font-bold text-gray-900">1.2M</p>
-                        <p class="text-xs text-blue-600 mt-1">tons traded today</p>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-600">Current Price</p>
+                        <p class="text-2xl font-bold text-gray-900" id="currentPrice">
+                            <span class="inline-block w-16 h-6 bg-gray-200 animate-pulse rounded"></span>
+                        </p>
+                        <p class="text-xs mt-1" id="currentPriceChange">
+                            <span class="inline-block w-20 h-4 bg-gray-200 animate-pulse rounded"></span>
+                        </p>
                     </div>
                     <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                         <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Market Cap Card -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">Market Cap</p>
-                        <p class="text-2xl font-bold text-gray-900">$54.8B</p>
-                        <p class="text-xs text-purple-600 mt-1">Global market size</p>
-                    </div>
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                         </svg>
                     </div>
                 </div>
             </div>
+
+            <!-- Price Range Card -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-600">Price Range</p>
+                        <p class="text-lg font-bold text-gray-900" id="priceRange">
+                            <span class="inline-block w-20 h-5 bg-gray-200 animate-pulse rounded"></span>
+                        </p>
+                        <p class="text-xs text-purple-600 mt-1" id="priceVolatility">
+                            <span class="inline-block w-16 h-4 bg-gray-200 animate-pulse rounded"></span>
+                        </p>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Statistics -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Highest Price -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-center">
+                    <p class="text-sm font-medium text-gray-600">Highest Price</p>
+                    <p class="text-xl font-bold text-green-600" id="highestPrice">
+                        <span class="inline-block w-16 h-5 bg-gray-200 animate-pulse rounded"></span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Lowest Price -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-center">
+                    <p class="text-sm font-medium text-gray-600">Lowest Price</p>
+                    <p class="text-xl font-bold text-red-600" id="lowestPrice">
+                        <span class="inline-block w-16 h-5 bg-gray-200 animate-pulse rounded"></span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Data Points -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-center">
+                    <p class="text-sm font-medium text-gray-600">Data Points</p>
+                    <p class="text-xl font-bold text-blue-600" id="dataPoints">
+                        <span class="inline-block w-12 h-5 bg-gray-200 animate-pulse rounded"></span>
+                    </p>
+                </div>
+            </div>
+
+            
         </div>
 
         <!-- Market Insights -->
@@ -146,21 +193,21 @@
                             <div class="bg-green-50 rounded-lg p-3 border border-green-200">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-medium text-green-800">Voluntary Markets</span>
-                                    <span class="text-xs text-green-600">↗ +15%</span>
+                                    <span class="text-xs text-green-600">+15%</span>
                                 </div>
                                 <p class="text-xs text-green-700 mt-1">Growing corporate demand</p>
                             </div>
                             <div class="bg-blue-50 rounded-lg p-3 border border-blue-200">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-medium text-blue-800">Compliance Markets</span>
-                                    <span class="text-xs text-blue-600">↗ +8%</span>
+                                    <span class="text-xs text-blue-600">+8%</span>
                                 </div>
                                 <p class="text-xs text-blue-700 mt-1">Stable regulatory demand</p>
                             </div>
                             <div class="bg-purple-50 rounded-lg p-3 border border-purple-200">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm font-medium text-purple-800">Technology Credits</span>
-                                    <span class="text-xs text-purple-600">↗ +22%</span>
+                                    <span class="text-xs text-purple-600"> +22%</span>
                                 </div>
                                 <p class="text-xs text-purple-700 mt-1">Premium for tech solutions</p>
                             </div>
@@ -199,16 +246,106 @@
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Chart Script -->
     <script>
+        // Get data from Laravel
+        const chartLabels = @json($chartData['labels']);
+        const chartPrices = @json($chartData['prices']);
+
+        // Calculate metrics from chart data
+        function calculateMetrics(prices) {
+            if (!prices || prices.length === 0) return null;
+
+            const validPrices = prices.filter(price => price !== null && !isNaN(price));
+            if (validPrices.length === 0) return null;
+
+            const average = validPrices.reduce((sum, price) => sum + price, 0) / validPrices.length;
+            const highest = Math.max(...validPrices);
+            const lowest = Math.min(...validPrices);
+            const current = validPrices[validPrices.length - 1];
+            const previous = validPrices.length > 1 ? validPrices[validPrices.length - 2] : current;
+            
+            const currentChange = ((current - previous) / previous) * 100;
+            const averageChange = validPrices.length > 10 ? 
+                ((average - (validPrices.slice(0, Math.floor(validPrices.length / 2)).reduce((sum, price) => sum + price, 0) / Math.floor(validPrices.length / 2))) / (validPrices.slice(0, Math.floor(validPrices.length / 2)).reduce((sum, price) => sum + price, 0) / Math.floor(validPrices.length / 2))) * 100 : 0;
+            
+            const volatility = Math.sqrt(validPrices.reduce((sum, price) => sum + Math.pow(price - average, 2), 0) / validPrices.length);
+            const volatilityPercent = (volatility / average) * 100;
+
+            // Determine trend
+            const recentPrices = validPrices.slice(-5);
+            const trendSlope = recentPrices.length > 1 ? 
+                (recentPrices[recentPrices.length - 1] - recentPrices[0]) / recentPrices.length : 0;
+
+            let trend = 'Stable';
+            let trendColor = 'text-gray-600';
+            if (trendSlope > 0.5) {
+                trend = '↗ Bullish';
+                trendColor = 'text-green-600';
+            } else if (trendSlope < -0.5) {
+                trend = '↘ Bearish';
+                trendColor = 'text-red-600';
+            }
+
+            return {
+                average: average,
+                highest: highest,
+                lowest: lowest,
+                current: current,
+                currentChange: currentChange,
+                averageChange: averageChange,
+                volatility: volatilityPercent,
+                dataPoints: validPrices.length,
+                trend: trend,
+                trendColor: trendColor
+            };
+        }
+
+        // Update DOM with calculated metrics
+        function updateMetrics() {
+            const metrics = calculateMetrics(chartPrices);
+            
+            if (!metrics) {
+                console.error('Unable to calculate metrics from chart data');
+                return;
+            }
+
+            // Average Price
+            document.getElementById('averagePrice').textContent = `$${metrics.average.toFixed(2)}`;
+            document.getElementById('averagePriceChange').innerHTML = 
+                `<span class="${metrics.averageChange >= 0 ? 'text-green-600' : 'text-red-600'}">
+                    ${metrics.averageChange >= 0 ? '↗' : '↘'} ${Math.abs(metrics.averageChange).toFixed(1)}% historical avg
+                </span>`;
+
+            // Current Price
+            document.getElementById('currentPrice').textContent = `$${metrics.current.toFixed(2)}`;
+            document.getElementById('currentPriceChange').innerHTML = 
+                `<span class="${metrics.currentChange >= 0 ? 'text-green-600' : 'text-red-600'}">
+                    ${metrics.currentChange >= 0 ? '↗' : '↘'} ${Math.abs(metrics.currentChange).toFixed(1)}% from previous
+                </span>`;
+
+            // Price Range
+            document.getElementById('priceRange').textContent = 
+                `$${metrics.lowest.toFixed(2)} - $${metrics.highest.toFixed(2)}`;
+            document.getElementById('priceVolatility').innerHTML = 
+                `<span class="text-purple-600">Volatility: ${metrics.volatility.toFixed(1)}%</span>`;
+
+            // Additional Statistics
+            document.getElementById('highestPrice').textContent = `$${metrics.highest.toFixed(2)}`;
+            document.getElementById('lowestPrice').textContent = `$${metrics.lowest.toFixed(2)}`;
+            document.getElementById('dataPoints').textContent = metrics.dataPoints;
+            document.getElementById('trendDirection').innerHTML = 
+                `<span class="${metrics.trendColor}">${metrics.trend}</span>`;
+        }
+
+        // Initialize Chart
         const ctx = document.getElementById('carbonPriceChart').getContext('2d');
         const carbonChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: @json($chartData['labels']),
+                labels: chartLabels,
                 datasets: [{
                     label: 'Carbon Credit Price ($)',
-                    data: @json($chartData['prices']),
+                    data: chartPrices,
                     borderColor: '#059669',
                     backgroundColor: 'rgba(5, 150, 105, 0.1)',
                     borderWidth: 3,
@@ -261,7 +398,7 @@
                         ticks: {
                             color: '#6B7280',
                             callback: function(value) {
-                                return ' + value.toFixed(2);
+                                return '$' + value.toFixed(2);
                             }
                         },
                         grid: {
@@ -280,15 +417,24 @@
                         displayColors: false,
                         callbacks: {
                             label: function(context) {
-                                return 'Price:  + context.parsed.y.toFixed(2);
+                                return 'Price: $' + context.parsed.y.toFixed(2);
                             }
                         }
                     },
                     legend: {
                         display: false
                     }
+                },
+                onHover: function(event, elements) {
+                    event.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
                 }
             }
         });
+
+        // Update metrics after chart is created
+        updateMetrics();
+
+        // Optional: Refresh metrics every 30 seconds if you have live data
+        // setInterval(updateMetrics, 30000);
     </script>
 </x-app-layout>
