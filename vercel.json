@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.php": {
-      "runtime": "vercel-php@0.7.0"
+  "builds": [
+    {
+      "src": "api/index.php",
+      "use": "vercel-php@0.7.0"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/build/(.*)",
@@ -23,6 +24,8 @@
       "dest": "/api/index.php"
     }
   ],
+  "installCommand": "echo 'Skipping install'",
+  "buildCommand": "echo 'Skipping build'",
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "false",
