@@ -4,22 +4,7 @@
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.7.0" }
     },
-    "github": {
-        "enabled": false
-    },
     "routes": [
-        {
-            "src": "/build/(.*)",
-            "dest": "/public/build/$1"
-        },
-        {
-            "src": "/(css|js|images|storage)/(.*)",
-            "dest": "/public/$1/$2"
-        },
-        {
-            "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
-        },
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
@@ -27,8 +12,9 @@
     ],
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
-        "APP_URL": "https://ccpml2.vercel.app",
+        "APP_DEBUG": "true",
+        "APP_URL": "https://ccppm.vercel.app",
+        "APP_KEY": "qf2Akyg1QPOsCfKC6Y3l2GaWRqeKESTBmkbrcONIUEs=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
@@ -39,29 +25,6 @@
 
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie",
-
-        "LOG_DEPRECATIONS_CHANNEL": "null",
-        "LOG_LEVEL": "debug",
-
-        "BROADCAST_DRIVER": "log",
-        "FILESYSTEM_DISK": "local",
-        "QUEUE_CONNECTION": "sync",
-        "SESSION_LIFETIME": "120",
-
-        "MEMCACHED_HOST": "127.0.0.1",
-
-        "REDIS_HOST": "127.0.0.1",
-        "REDIS_PASSWORD": "null",
-        "REDIS_PORT": "6379",
-
-        "MAIL_MAILER": "smtp",
-        "MAIL_HOST": "mailpit",
-        "MAIL_PORT": "1025",
-        "MAIL_USERNAME": "null",
-        "MAIL_PASSWORD": "null",
-        "MAIL_ENCRYPTION": "null",
-        "MAIL_FROM_ADDRESS": "hello@example.com",
-        "MAIL_FROM_NAME": "Laracel-mailer"
+        "SESSION_DRIVER": "cookie"
     }
 }
