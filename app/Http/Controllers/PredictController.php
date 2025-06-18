@@ -47,20 +47,12 @@ class PredictController extends Controller
 
         Log::info('Input Data Sent to Flask:', $inputData);
 
-        // Step 3: Call Flask model - UPDATED TO USE DEPLOYED API
+        // Step 3: Call Flask model
         try {
-            // Option 1: Use environment variable (recommended)
-            $flaskUrl = env('FLASK_API_URL', 'https://flaskccpm-production.up.railway.app');
-            $response = Http::timeout(30)->post($flaskUrl . '/predict', $inputData);
-
-            // Option 2: Direct URL (alternative)
-            // $response = Http::timeout(30)->post('https://flaskccpm-production.up.railway.app/predict', $inputData);
+            $response = Http::post('http://127.0.0.1:5000/predict', $inputData);
 
             if ($response->failed()) {
-                Log::error('Flask server returned an error.', [
-                    'status' => $response->status(),
-                    'response' => $response->body()
-                ]);
+                Log::error('Flask server returned an error.', ['response' => $response->body()]);
                 return redirect()->back()->withErrors('Flask server error. Try again.');
             }
 
@@ -75,10 +67,7 @@ class PredictController extends Controller
 
             return redirect()->back()->with('result', $predictedPrice);
         } catch (\Exception $e) {
-            Log::error('Exception while calling Flask model', [
-                'error' => $e->getMessage(),
-                'flask_url' => $flaskUrl ?? 'https://flaskccpm-production.up.railway.app'
-            ]);
+            Log::error('Exception while calling Flask model', ['error' => $e->getMessage()]);
             return redirect()->back()->withErrors('Prediction failed: ' . $e->getMessage());
         }
     }
